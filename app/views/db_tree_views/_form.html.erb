@@ -1,0 +1,17 @@
+<%= form_with(model: db_tree_view) do |form| %>
+  <% if db_tree_view.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(db_tree_view.errors.count, "error") %> prohibited this db_tree_view from being saved:</h2>
+
+      <ul>
+        <% db_tree_view.errors.each do |error| %>
+          <li><%= error.full_message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>
