@@ -10,18 +10,10 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_10_11_185249) do
-
-  create_table "db_tree_veiws", force: :cascade do |t|
-    t.string "value"
-    t.string "ancestry"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-    t.index ["ancestry"], name: "index_db_tree_veiws_on_ancestry"
-  end
+ActiveRecord::Schema.define(version: 2021_10_13_081600) do
 
   create_table "db_tree_views", force: :cascade do |t|
-    t.string "value", null: false
+    t.string "text", null: false
     t.string "ancestry"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false

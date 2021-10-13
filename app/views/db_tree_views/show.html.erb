@@ -1,4 +1,19 @@
-<p id="notice"><%= notice %></p>
+<%= javascript_pack_tag 'db_tree_views' %>
+<%= stylesheet_link_tag 'db_tree_views' %>
 
-<%= link_to 'Edit', edit_db_tree_view_path(@db_tree_view) %> |
-<%= link_to 'Back', db_tree_views_path %>
+
+<div class="container">
+  <div class="tree-wrapper">
+    <div class="tree-wrapper-header">
+      <h3>DBTreeView</h3>
+    </div>
+    <div id='db-tree' data-nodes-url="<%= db_tree_views_url %>"></div>
+  </div>
+
+  <div class="tree-wrapper">
+    <div class="tree-wrapper-header">
+      <h3>CachedTreeView</h3>
+    </div>
+    <div id='cache-tree'></div>
+  </div>
+</div>

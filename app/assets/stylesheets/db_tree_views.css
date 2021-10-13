@@ -1,0 +1,25 @@
+/*
+*= require 'jstree'
+ */
+
+.container {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    justify-content: space-evenly;
+}
+
+.tree-wrapper {
+    max-width: 100%;
+    overflow: auto;
+    font: 10px Verdana, sans-serif;
+    box-shadow: 0 0 5px #ccc;
+    padding: 10px;
+    border-radius: 5px;
+    height: 400px;
+    min-width: 300px;
+}
+
+.tree-wrapper-header {
+
+}
