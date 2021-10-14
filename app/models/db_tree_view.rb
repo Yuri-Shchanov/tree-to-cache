@@ -1,5 +1,5 @@
 class DbTreeView < ApplicationRecord
-  has_ancestry
   include Stateable
-
+  include TreeViewValidations
+  has_ancestry
 end

@@ -10,12 +10,16 @@
     align-items: center;
 }
 
+.tree-wrapper-container {
+    box-shadow: 0 0 5px #ccc;
+    padding: 10px;
+    height: 435px;
+}
+
 .tree-wrapper {
     max-width: 100%;
     overflow: auto;
     font: 10px Verdana, sans-serif;
-    box-shadow: 0 0 5px #ccc;
-    padding: 10px;
     border-radius: 5px;
     height: 400px;
     min-width: 300px;
@@ -25,6 +29,11 @@
     margin-bottom: 20px;
     border-bottom: 1px solid gray;
     text-align: center;
+}
+
+.tree-wrapper-container-footer {
+    padding-top: 10px;
+    border-top: 1px solid gray;
 }
 
 .add-node-to-cached {

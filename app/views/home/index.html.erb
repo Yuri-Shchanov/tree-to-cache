@@ -1,22 +1,31 @@
 <%= javascript_pack_tag 'main' %>
 
 <div class="container">
-  <div class="tree-wrapper">
-    <div class="tree-wrapper-header">
-      <h3>DBTreeView</h3>
+  <div class="tree-wrapper-container">
+    <div class="tree-wrapper">
+      <div class="tree-wrapper-header">
+        <h3>DBTreeView</h3>
+      </div>
+      <div id='db-tree' data-nodes-url="<%= db_tree_views_url %>"></div>
     </div>
-    <div id='db-tree' data-nodes-url="<%= db_tree_views_url %>"></div>
   </div>
 
   <button class="add-node-to-cached" title="Добавить запись в кэш">>>></button>
 
-  <div class="tree-wrapper">
-    <div class="tree-wrapper-header">
-      <h3>CachedTreeView</h3>
+  <div class="tree-wrapper-container">
+    <div class="tree-wrapper">
+      <div class="tree-wrapper-header">
+        <h3>CachedTreeView</h3>
+      </div>
+      <div id='cached-tree'
+           data-nodes-url="<%= cached_tree_views_url %>"
+           data-create-url="<%= cached_tree_views_url %>"
+      ></div>
     </div>
-    <div id='cached-tree'
-         data-nodes-url="<%= cached_tree_views_url %>"
-         data-create-url="<%= cached_tree_views_url %>"
-    ></div>
+    <div class="tree-wrapper-container-footer">
+      <button class="rename-node-btn">
+        <i class="fa fa-pencil-alt" title="Редактировать"></i>
+      </button>
+    </div>
   </div>
 </div>

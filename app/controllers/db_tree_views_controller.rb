@@ -5,7 +5,7 @@ class DbTreeViewsController < ApplicationController
       {
         children: children,
         id: parent.id,
-        text: parent.text,
+        text: ERB::Util.h(parent.text),
         data: {
           ancestry: parent.ancestry,
         },

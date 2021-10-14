@@ -26,6 +26,23 @@ class CachedTreeView extends TreeView {
       this.reinitJsTree()
     })
   })
+
+  edit = (() => {
+    let node = this.getNode(),
+      url = `${this.dataUrl}/${node.id}`
+    this.jstree().edit(node, node.text, ((node, is_edited, is_canseled, text) => {
+      if (is_edited && !is_canseled) {
+        $.ajax({
+          url: url,
+          dataType: 'JSON',
+          method: 'PATCH',
+          data: {
+            text: text
+          }
+        })
+      }
+    }))
+  })
 }
 
 export default CachedTreeView

@@ -9,4 +9,8 @@ $(document).ready(() => {
     let nodeData = DbTree.getNode()
     CachedTree.add(nodeData)
   })
+
+  $('.rename-node-btn').click(() => {
+    CachedTree.edit()
+  })
 })
