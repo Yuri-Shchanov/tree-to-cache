@@ -5,6 +5,15 @@
 import Rails from "@rails/ujs"
 import * as ActiveStorage from "@rails/activestorage"
 import "channels"
+import $ from 'jquery'
 
+global.$ = $
+
+$(function(){
+  // always pass csrf tokens on ajax calls
+  $.ajaxSetup({
+    headers: { 'X-CSRF-Token': $('meta[name="csrf-token"]').attr('content') }
+  });
+});
 Rails.start()
 ActiveStorage.start()
