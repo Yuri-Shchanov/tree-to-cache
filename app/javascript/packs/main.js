@@ -13,4 +13,8 @@ $(document).ready(() => {
   $('.rename-node-btn').click(() => {
     CachedTree.edit()
   })
+
+  $('.add-child-node-btn').click(() => {
+    CachedTree.addChild()
+  })
 })

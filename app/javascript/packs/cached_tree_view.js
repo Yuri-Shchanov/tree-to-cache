@@ -16,15 +16,31 @@ class CachedTreeView extends TreeView {
       createData.ancestry = data.data.ancestry
     }
 
-    $.ajax({
-      url: this.createUrl,
-      dataType: 'JSON',
-      method: 'POST',
-      data: createData
-    }).done((response) => {
+    this.ajaxCreate(createData).done((response) => {
       this.setData(response)
       this.reinitJsTree()
     })
+  })
+
+  addChild = (() => {
+    let node = this.getNode(),
+      newNodeId = this.jstree().create_node(node)
+
+    this.jstree().edit(newNodeId, 'New node', ((newNode) => {
+      let parentId = this.jstree().get_parent(newNode),
+        parent = this.jstree().get_json(parentId, {no_children: true}),
+        parentAncestry = parent.data.ancestry
+
+      let data = {
+        text: newNode.text,
+        ancestry: `${parentAncestry}/${parentId}`
+      }
+
+      this.ajaxCreate(data).then((response) => {
+        this.setData(response)
+        this.reinitJsTree()
+      })
+    }))
   })
 
   edit = (() => {
@@ -42,6 +58,15 @@ class CachedTreeView extends TreeView {
         })
       }
     }))
+  })
+
+  ajaxCreate = ((data) => {
+    return $.ajax({
+      url: this.createUrl,
+      dataType: 'JSON',
+      method: 'POST',
+      data: data
+    })
   })
 }
 

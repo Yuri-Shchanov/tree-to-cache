@@ -10,22 +10,22 @@ class CachedTreeViewsController < ApplicationController
       set_cached_tree_views
       render :index
     else
-      render json: {errors: @cached_tree_view.errors}, status: :unprocessable_entity
+      render json: { errors: @cached_tree_view.errors }, status: :unprocessable_entity
     end
   end
 
   def update
     if @cached_tree_view.update(update_cached_tree_view_params)
-      render json: {status: :ok}
+      render json: { status: :ok }
     else
-      render json: {errors: @cached_tree_view.errors}, status: :unprocessable_entity
+      render json: { errors: @cached_tree_view.errors }, status: :unprocessable_entity
     end
   end
 
   private
 
   def create_cached_tree_view_params
-    params.permit(:id, :parent_id, :text, :ancestry)
+    params.permit(:id, :text, :ancestry)
   end
 
   def update_cached_tree_view_params
