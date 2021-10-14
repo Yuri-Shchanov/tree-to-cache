@@ -17,4 +17,8 @@ $(document).ready(() => {
   $('.add-child-node-btn').click(() => {
     CachedTree.addChild()
   })
+
+  $('.remove-child-node-btn').click(() => {
+    CachedTree.destroy()
+  })
 })

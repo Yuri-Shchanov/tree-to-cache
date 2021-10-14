@@ -62,6 +62,10 @@ class TreeView {
     return $(this.element_id).jstree()
   })
 
+  deselectAll = (() => {
+    $(this.element_id).jstree().deselect_all()
+  })
+
   getSelected = (() => {
     return this.jstree().get_selected()
   })

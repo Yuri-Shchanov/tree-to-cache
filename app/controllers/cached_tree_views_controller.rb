@@ -1,6 +1,6 @@
 class CachedTreeViewsController < ApplicationController
   before_action :set_cached_tree_views, only: :index
-  before_action :set_cached_tree_view, only: :update
+  before_action :set_cached_tree_view, only: %i(update destroy)
   # GET /db_tree_views or /db_tree_views.json
   def index; end
 
@@ -17,6 +17,15 @@ class CachedTreeViewsController < ApplicationController
   def update
     if @cached_tree_view.update(update_cached_tree_view_params)
       render json: { status: :ok }
+    else
+      render json: { errors: @cached_tree_view.errors }, status: :unprocessable_entity
+    end
+  end
+
+  def destroy
+    if @cached_tree_view.destroy
+      set_cached_tree_views
+      render :index
     else
       render json: { errors: @cached_tree_view.errors }, status: :unprocessable_entity
     end

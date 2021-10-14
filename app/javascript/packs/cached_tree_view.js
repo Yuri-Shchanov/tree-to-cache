@@ -60,6 +60,24 @@ class CachedTreeView extends TreeView {
     }))
   })
 
+  destroy = (() => {
+    let promptText = 'Данное действие удалит выбранный элемент и всех его потомков. Вы уверены?'
+    if (!confirm(promptText)) return
+
+    let node = this.getNode(),
+      url = `${this.dataUrl}/${node.id}`
+
+    $.ajax({
+      url: url,
+      dataType: 'JSON',
+      method: 'DELETE',
+    }).done((response) => {
+      this.deselectAll()
+      this.setData(response)
+      this.reinitJsTree()
+    })
+  })
+
   ajaxCreate = ((data) => {
     return $.ajax({
       url: this.createUrl,
