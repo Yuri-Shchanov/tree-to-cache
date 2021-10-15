@@ -26,4 +26,20 @@ $(document).ready(() => {
     let cachedNodes = CachedTree.getAllNodes({flat: true})
     DbTree.applyChanges(cachedNodes)
   })
+
+  $('.reset-btn').click((e) => {
+    let $element = $(e.target),
+      confirmText = 'Данное действие очистит все сделанные изменения и вернет базу к начальному состоянию. Вы уверены?'
+    if (!confirm(confirmText)) return
+
+    let url = $element.data('resetPath')
+
+    $.ajax({
+      url: url,
+      dataType: 'JSON',
+      method: 'POST',
+    }).done(() => {
+      location.reload()
+    })
+  })
 })

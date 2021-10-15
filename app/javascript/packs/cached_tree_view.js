@@ -61,8 +61,8 @@ class CachedTreeView extends TreeView {
   })
 
   destroy = (() => {
-    let promptText = 'Данное действие удалит выбранный элемент и всех его потомков. Вы уверены?'
-    if (!confirm(promptText)) return
+    let confirmText = 'Данное действие удалит выбранный элемент и всех его потомков. Вы уверены?'
+    if (!confirm(confirmText)) return
 
     let node = this.getNode(),
       url = `${this.dataUrl}/${node.id}`

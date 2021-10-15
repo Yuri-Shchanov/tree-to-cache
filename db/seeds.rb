@@ -1,22 +1,22 @@
 DEFAULT_TREE = [{
-  value: :node_1,
+  text: :node_1,
   children: [
-    {value: :node_2},
-    {value: :node_3},
+    {text: :node_2},
+    {text: :node_3},
     {
-      value: :node_4,
+      text: :node_4,
       children: [
-        {value: :node_5},
+        {text: :node_5},
         {
-          value: :node_6,
+          text: :node_6,
           children: [
             {
-              value: :node_7,
+              text: :node_7,
               children: [
                 {
-                  value: :node_8,
+                  text: :node_8,
                   children: [
-                    {value: :node_9}
+                    {text: :node_9}
                   ]
                 }
               ]
@@ -25,19 +25,19 @@ DEFAULT_TREE = [{
         }
       ]
     }, {
-      value: :node_10,
+      text: :node_10,
       children: [
-        {value: :node_11},
+        {text: :node_11},
         {
-          value: :node_12,
+          text: :node_12,
           children: [
             {
-              value: :node_13,
+              text: :node_13,
               children: [
                 {
-                  value: :node_14,
+                  text: :node_14,
                   children: [
-                    {value: :node_15}
+                    {text: :node_15}
                   ]
                 }
               ]
@@ -51,11 +51,12 @@ DEFAULT_TREE = [{
 
 def create_tree(tree = DEFAULT_TREE, parent = nil)
   tree.each do |node|
-    db_node = DbTreeView.create(value: node[:value], parent: parent)
+    db_node = DbTreeView.create(text: node[:text], parent: parent)
     next unless node[:children]
     create_tree(node[:children], db_node)
   end
 end
 
 DbTreeView.delete_all
+CachedTreeView.delete_all
 create_tree
