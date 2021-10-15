@@ -42,17 +42,7 @@ class CachedTreeViewsController < ApplicationController
   end
 
   def set_cached_tree_views
-    @cached_tree_views = CachedTreeView.select(:id, :text, :ancestry, :state).arrange_serializable do |parent, children|
-      {
-        children: children,
-        id: parent.id,
-        text: ERB::Util.h(parent.text),
-        data: {
-          ancestry: parent.ancestry,
-        },
-        state: parent.state,
-      }
-    end
+    @cached_tree_views = TreeViewDecorator.decorate(CachedTreeView).list
   end
 
   def set_cached_tree_view

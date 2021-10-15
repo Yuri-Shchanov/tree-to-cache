@@ -30,7 +30,7 @@ class TreeView {
 
   formatData = ((data) => {
     data.forEach((node) => {
-      node.state = {[node.state]: true}
+      node.state = {[node.data.state]: true}
       if (node.children !== undefined) {
         this.formatData(node.children)
       }

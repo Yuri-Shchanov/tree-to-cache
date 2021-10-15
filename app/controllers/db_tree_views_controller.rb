@@ -1,16 +1,24 @@
 class DbTreeViewsController < ApplicationController
+  before_action :set_db_tree_views, only: :show
+
   # GET /db_tree_views or /db_tree_views.json
-  def show
-    @db_tree_views = DbTreeView.select(:id, :text, :ancestry, :state).arrange_serializable do |parent, children|
-      {
-        children: children,
-        id: parent.id,
-        text: ERB::Util.h(parent.text),
-        data: {
-          ancestry: parent.ancestry,
-        },
-        state: parent.state,
-      }
+  def show; end
+
+  def apply_changes
+    if cnahges = DbTreeView.apply_changes(apply_changes_params[:db_tree_views])
+      set_db_tree_views
+      render :show
+    else
+      render json: {errors: cnahges[:erors]}, status: :unprocessable_entity
     end
+  end
+
+  private
+  def apply_changes_params
+    params.permit(db_tree_views: [:id, :text, :ancestry, :state])
+  end
+
+  def set_db_tree_views
+    @db_tree_views = TreeViewDecorator.decorate(DbTreeView).list
   end
 end

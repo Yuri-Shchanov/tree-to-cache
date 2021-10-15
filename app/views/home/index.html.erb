@@ -6,7 +6,10 @@
       <div class="tree-wrapper-header">
         <h3>DBTreeView</h3>
       </div>
-      <div id='db-tree' data-nodes-url="<%= db_tree_views_url %>"></div>
+      <div id='db-tree'
+           data-nodes-url="<%= db_tree_views_url %>"
+           data-apply-changes-url = <%= apply_changes_db_tree_views_url %>
+      ></div>
     </div>
   </div>
 
@@ -30,7 +33,10 @@
         <i class="fa fa-plus" title="Добавить потомка"></i>
       </button>
       <button class="remove-child-node-btn">
-        <i class="fa fa-trash" title="удалить элемент"></i>
+        <i class="fa fa-trash" title="Удалить элемент"></i>
+      </button>
+      <button class="apply-changes-btn" title="Применить изменения">
+        Применить
       </button>
     </div>
   </div>

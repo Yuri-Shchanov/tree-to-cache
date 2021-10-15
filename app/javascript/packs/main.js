@@ -21,4 +21,9 @@ $(document).ready(() => {
   $('.remove-child-node-btn').click(() => {
     CachedTree.destroy()
   })
+
+  $('.apply-changes-btn').click(() => {
+    let cachedNodes = CachedTree.getAllNodes({flat: true})
+    DbTree.applyChanges(cachedNodes)
+  })
 })
