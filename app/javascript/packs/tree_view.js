@@ -1,5 +1,6 @@
 import $ from 'jquery'
 import 'jstree'
+import 'jstree/dist/themes/default/style'
 
 $.jstree.defaults.core.themes.icons = false
 

@@ -57,3 +57,6 @@ gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 
 gem 'ancestry'
 gem 'draper'
+gem 'rails_serve_static_assets'
+gem 'foreman'
+gem 'font-awesome-rails'
