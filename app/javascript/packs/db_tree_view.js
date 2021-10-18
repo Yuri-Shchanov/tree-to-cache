@@ -9,6 +9,9 @@ class DbTreeView extends TreeView {
   }
 
   applyChanges = ((data) => {
+    if (data.length === 0) {
+      return
+    }
     let applyData = data.map((node) => {
       return {
         id: node.id,
@@ -28,6 +31,7 @@ class DbTreeView extends TreeView {
     }).done((response) => {
       this.setData(response)
       this.reinitJsTree()
+      this.notyf.success('Изменения применены');
     })
   })
 }

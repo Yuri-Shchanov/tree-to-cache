@@ -1,6 +1,7 @@
 import $ from 'jquery'
 import 'jstree'
 import 'jstree/dist/themes/default/style'
+import {Notyf} from "notyf";
 
 $.jstree.defaults.core.themes.icons = false
 
@@ -9,6 +10,11 @@ class TreeView {
     this.element_id = element_id
     this.dataUrl = $(element_id).data('nodesUrl')
     this.initialize()
+
+    this.notyf = new Notyf({
+      duration: 5000,
+      position: {x: 'right', y: 'top'}
+    });
   }
 
   initialize = (() => {
@@ -32,6 +38,7 @@ class TreeView {
   formatData = ((data) => {
     data.forEach((node) => {
       node.state = {[node.data.state]: true}
+      node.state.opened = true
       if (node.children !== undefined) {
         this.formatData(node.children)
       }
@@ -50,6 +57,10 @@ class TreeView {
         themes: {
           stripes: true
         }
+      },
+      plugins: ["sort"],
+      sort: function(a, b) {
+        return a > b ? 1 : -1;
       }
     })
   })
