@@ -34,7 +34,7 @@ class CachedTreeViewsController < ApplicationController
   private
 
   def create_cached_tree_view_params
-    params.permit(:id, :text, :ancestry)
+    params.permit(:id, :text, :parent_id)
   end
 
   def update_cached_tree_view_params

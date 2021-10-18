@@ -60,7 +60,7 @@ class TreeView {
       },
       plugins: ["sort"],
       sort: function(a, b) {
-        return a > b ? 1 : -1;
+        return parseInt(a) > parseInt(b) ? 1 : -1;
       }
     })
   })

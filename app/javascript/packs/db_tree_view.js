@@ -16,7 +16,7 @@ class DbTreeView extends TreeView {
       return {
         id: node.id,
         text: node.text,
-        ancestry: node.data.ancestry,
+        parent_id: node.data.parent_id,
         state: node.data.state
       }
     })

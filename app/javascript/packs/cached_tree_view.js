@@ -17,8 +17,8 @@ class CachedTreeView extends TreeView {
       id: data.id,
       text: data.text,
     }
-    if (data.data.ancestry) {
-      createData.ancestry = data.data.ancestry
+    if (data.data.parent_id) {
+      createData.parent_id = data.data.parent_id
     }
 
     this.ajaxCreate(createData).done((response) => {
@@ -37,14 +37,9 @@ class CachedTreeView extends TreeView {
       newNodeId = this.jstree().create_node(node)
 
     this.jstree().edit(newNodeId, 'New node', ((newNode) => {
-      let parentId = this.jstree().get_parent(newNode),
-        parent = this.jstree().get_json(parentId, {no_children: true}),
-        parentAncestry = parent.data.ancestry,
-        ancestry = parentAncestry === null ? parentId : `${parentAncestry}/${parentId}`
-
       let data = {
         text: newNode.text,
-        ancestry: ancestry
+        parent_id: newNode.parent
       }
 
       this.ajaxCreate(data).then((response) => {
@@ -82,7 +77,7 @@ class CachedTreeView extends TreeView {
       return
     }
 
-    if (this.getNode().data.ancestry === null) {
+    if (this.getNode().data.parent_id === null) {
       this.notyf.error('Нельзя удалить корневой элемент');
       return
     }

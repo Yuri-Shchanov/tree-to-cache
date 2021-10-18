@@ -15,7 +15,7 @@ class DbTreeViewsController < ApplicationController
 
   private
   def apply_changes_params
-    params.permit(db_tree_views: [:id, :text, :ancestry, :state])
+    params.permit(db_tree_views: [:id, :text, :parent_id, :state])
   end
 
   def set_db_tree_views

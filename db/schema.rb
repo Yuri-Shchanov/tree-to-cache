@@ -10,27 +10,27 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_10_13_104107) do
+ActiveRecord::Schema.define(version: 2021_10_18_191633) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
   create_table "cached_tree_views", force: :cascade do |t|
-    t.string "ancestry"
     t.string "text", null: false
     t.integer "state", default: 0
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.index ["ancestry"], name: "index_cached_tree_views_on_ancestry"
+    t.integer "parent_id"
+    t.index ["parent_id"], name: "index_cached_tree_views_on_parent_id"
   end
 
   create_table "db_tree_views", force: :cascade do |t|
     t.string "text", null: false
-    t.string "ancestry"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.integer "state", default: 0
-    t.index ["ancestry"], name: "index_db_tree_views_on_ancestry"
+    t.integer "parent_id"
+    t.index ["parent_id"], name: "index_db_tree_views_on_parent_id"
   end
 
 end
