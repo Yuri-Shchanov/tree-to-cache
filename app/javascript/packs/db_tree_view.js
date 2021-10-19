@@ -28,10 +28,8 @@ class DbTreeView extends TreeView {
       data: {
         db_tree_views: applyData
       }
-    }).done((response) => {
-      this.setData(response)
-      this.reinitJsTree()
-      this.notyf.success('Изменения применены');
+    }).done(() => {
+      location.reload()
     })
   })
 }

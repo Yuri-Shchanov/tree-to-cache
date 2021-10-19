@@ -5,11 +5,11 @@ class DbTreeViewsController < ApplicationController
   def show; end
 
   def apply_changes
-    if cnahges = DbTreeView.apply_changes(apply_changes_params[:db_tree_views])
-      set_db_tree_views
-      render :show
+    if changes = DbTreeView.apply_changes(apply_changes_params[:db_tree_views])
+      CachedTreeView.sync_nodes_with_db
+      render json: {}, status: :ok
     else
-      render json: {errors: cnahges[:erors]}, status: :unprocessable_entity
+      render json: {errors: changes[:errors]}, status: :unprocessable_entity
     end
   end
 

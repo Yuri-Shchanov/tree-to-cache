@@ -6,8 +6,8 @@ module Treeable
     has_many :children, class_name: name, foreign_key: :parent_id
 
     before_create :set_parent_state
-    before_create :disable_descendants, if: :disabled?
-    before_update :disable_descendants, if: :disabled?
+    before_create :disable_descendants, if: -> {state_changed? && disabled?}
+    before_update :disable_descendants, if: -> {state_changed? && disabled?}
 
 
     def descendants
