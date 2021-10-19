@@ -10,7 +10,7 @@ class DbTreeView < ApplicationRecord
       data.each do |_index, node_data|
         new_node = find_or_initialize_by(id: node_data[:id])
         new_node.assign_attributes(node_data.except(:id))
-        next if new_node.parent.disabled? && !new_node.persisted?
+        next if (new_node.parent.nil? || new_node.parent.disabled?) && !new_node.persisted?
         if new_node.disabled?
           new_node.destroy
         end
