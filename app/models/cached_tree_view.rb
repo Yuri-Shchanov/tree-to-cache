@@ -5,12 +5,13 @@ class CachedTreeView < ApplicationRecord
   include TreeViewValidations
 
   def self.sync_nodes_with_db
-    all_nodes = all
-    ids = all_nodes.pluck(:id)
+    # Don't touch deleted nodes. Only opened can be modified.
+    opened_nodes = opened
+    ids = opened_nodes.pluck(:id)
     db_nodes = DbTreeView.get_nodes(ids).select(:id, :state).to_a
     db_nodes_ids = db_nodes.pluck(:id)
 
-    all_nodes.find_each do |node|
+    opened_nodes.find_each do |node|
       if db_nodes_ids.exclude? node.id
         node.disabled!
         next
